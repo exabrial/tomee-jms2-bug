@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tomee>
+	<Container
+		id="container/singleton"
+		type="SINGLETON">
+		AccessTimeout=15 seconds
+	</Container>
+	<Container
+		id="container/stateless"
+		type="STATELESS">
+		AccessTimeout=15 seconds
+		MaxSize=25
+		MinSize=2
+		StrictPooling=false
+		MaxAge=0 hours
+		IdleTimeout=0 minutes
+	</Container>
+	<Container
+		id="container/mdb"
+		type="MESSAGE">
+		ResourceAdapter=ra/activemq
+	</Container>
+	<Resource
+		id="ra/activemq"
+		type="ActiveMQResourceAdapter">
+		BrokerXmlConfig = broker:(vm://localhost)
+	</Resource>
+	<Resource
+		id="jms/connectionFactory"
+		type="javax.jms.ConnectionFactory">
+		ResourceAdapter=ra/activemq
+	</Resource>
+</tomee>
