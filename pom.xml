@@ -42,13 +42,7 @@
 					<context>${project.artifactId}</context>
 					<tomeeClassifier>plume</tomeeClassifier>
 					<tomeeVersion>7.0.5</tomeeVersion>
-					<tomeeHttpPort>8000</tomeeHttpPort>
-					<tomeeShutdownPort>7000</tomeeShutdownPort>
-					<tomeeAjpPort>6000</tomeeAjpPort>
 					<runtimeWorkingDir>${project.artifactId}</runtimeWorkingDir>
-					<libs>
-						<lib>mysql:mysql-connector-java:5.1.47</lib>
-					</libs>
 				</configuration>
 			</plugin>
 		</plugins>
