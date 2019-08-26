@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tomee>
+	<TransactionManager
+		id="xa/transactionManager"
+		type="TransactionManager">
+		defaultTransactionTimeout=1s
+	</TransactionManager>
 	<Container
 		id="container/singleton"
 		type="SINGLETON">
@@ -23,11 +28,19 @@
 	<Resource
 		id="ra/activemq"
 		type="ActiveMQResourceAdapter">
-		BrokerXmlConfig = broker:(vm://localhost)
+		BrokerXmlConfig=broker:(vm://localhost)?persistent=false&amp;deleteAllMessagesOnStartup=true
 	</Resource>
 	<Resource
 		id="jms/connectionFactory"
 		type="javax.jms.ConnectionFactory">
 		ResourceAdapter=ra/activemq
+	</Resource>
+	<Resource
+		id="jms/connectionFactory"
+		type="javax.jms.ConnectionFactory">
+		ResourceAdapter=ra/activemq
+		poolMaxSize=3
+		poolMinSize=1
+		connectionMaxWaitTime=5s
 	</Resource>
 </tomee>

@@ -22,10 +22,10 @@ public class ControllerEJB {
 	public void businessFlow() {
 		try {
 			jmsContext.createProducer().send(queue, "test-text");
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
-		throw new XACancellingException();
+		//throw new XACancellingException();
 	}
 }

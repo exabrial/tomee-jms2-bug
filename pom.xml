@@ -37,11 +37,11 @@
 			<plugin>
 				<groupId>org.apache.tomee.maven</groupId>
 				<artifactId>tomee-maven-plugin</artifactId>
-				<version>7.0.5</version>
+				<version>7.0.6</version>
 				<configuration>
 					<context>${project.artifactId}</context>
 					<tomeeClassifier>plume</tomeeClassifier>
-					<tomeeVersion>7.0.5</tomeeVersion>
+					<tomeeVersion>7.0.6</tomeeVersion>
 					<runtimeWorkingDir>${project.artifactId}</runtimeWorkingDir>
 				</configuration>
 			</plugin>
