@@ -10,8 +10,8 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 
 @MessageDriven(activationConfig = { @ActivationConfigProperty(propertyName = "maxSessions", propertyValue = "1"),
-		@ActivationConfigProperty(propertyName = "destination", propertyValue = "com.github.exabrial.tomee-bug"),
-		@ActivationConfigProperty(propertyName = "maximumRedeliveries", propertyValue = "3") })
+		@ActivationConfigProperty(propertyName = "destination", propertyValue = "com.emoneyusa.TestObject"),
+		@ActivationConfigProperty(propertyName = "maximumRedeliveries", propertyValue = "1") })
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class ListenerMDB implements MessageListener {
 

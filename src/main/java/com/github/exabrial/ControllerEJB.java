@@ -1,31 +1,38 @@
 package com.github.exabrial;
 
-import javax.annotation.Resource;
-import javax.ejb.Lock;
-import javax.ejb.LockType;
-import javax.ejb.Singleton;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-import javax.inject.Inject;
-import javax.jms.JMSContext;
-import javax.jms.Queue;
+import java.util.Date;
 
-@Singleton
-@TransactionAttribute(TransactionAttributeType.MANDATORY)
-@Lock(LockType.READ)
+import javax.annotation.Resource;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.jms.Queue;
+import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
+
+import com.emoneyusa.TestObject;
+import com.emoneyusa.xcut.jms.JmsSender;
+
+@ApplicationScoped
+@Transactional(TxType.REQUIRED)
 public class ControllerEJB {
 	@Inject
-	private JMSContext jmsContext;
+	private JmsSender jmsSender;
 	@Resource(name = "com.github.exabrial.tomee-bug")
 	private Queue queue;
 
 	public void businessFlow() {
 		try {
-			jmsContext.createProducer().send(queue, "test-text");
-			Thread.sleep(2000);
+			jmsSender.sendToQueue(new TestObject());
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
-		//throw new XACancellingException();
+		System.out.println("controller complete:" + new Date());
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
+		// throw new WebApplicationException("msg");
 	}
 }
